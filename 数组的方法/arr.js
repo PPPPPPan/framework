@@ -71,3 +71,20 @@ function compose(...fns) {
 let result = compose(add, toUpper, sum)('pan', 'lai', 'shijie')
 console.log('result : >>>>>>>>>>>>>>>>', result) */
 // redux compose方法
+
+Array.prototype.reduce = function (callback, prev) {
+  for (let i = 0; i < this.length; i++) {
+    if (prev == undefined) {
+      prev = callback(this[i], this[i + 1], i + 1, this)
+      i++
+    } else {
+      prev = callback(prev, this[i], i, this)
+    }
+  }
+  return prev
+};
+
+let result = [1, 2, 3].reduce((a, b, index, current) => {
+  return a + b
+})
+console.log('result : >>>>>>>>>>>>>>>>', result)
